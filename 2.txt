@@ -1,0 +1,152 @@
+import random
+import re
+import sys
+from sopel import module
+from sopel.module import commands
+from sopel.formatting import bold, color, colors
+"""Frobnication module for Sopel
+
+Includes commands for frobnicating synchronous and asyncronous Werlingford
+paradigms. Uses a configurable HPADP endpoint to defalicate user-provided
+almication schemata.
+"""
+
+
+def random_line(afile):
+    line = next(afile)
+    for num, aline in enumerate(afile):
+        if random.randrange(num + 2):
+            continue
+        line = aline
+    return line
+
+
+@module.rule('Консол(ь|еч)ка, дай (йо|е|ё)бу!.*')
+def yoba(bot, trigger, found_match=None):
+    f = open('/home/user/.sopel/modules/yoba.txt')
+    print ('hi')
+    bot.reply(random_line(f))
+
+'''
+@module.rule('Майор, улиточку!')
+def snail(bot, trigger, found_match=None):
+    #from sopel.tools.target import Channel
+    # ch = Channel('s2ch')
+    #bot.say(str(bot.users.items()))
+    #if 'asibul' in ch.users:
+    #    bot.say('hi')
+    #    sys.exit
+    bot.say("""я — морская   @             _________""")
+    bot.say("""улиточка       \____       /         \ """)
+    bot.say("""        \      /    \     /   ____    \ """)
+    bot.say("""               \_    \   /   /    \    \ """)
+    bot.say("""                 \    \ (    \__/  )    )""")
+    bot.say("""                  \    \_\ \______/    /""")
+    bot.say("""                   \      \           /___""")
+    bot.say("""                    \______\_________/____"-_""")
+
+'''
+@module.rule('Консолька, петушка!')
+def rooster(bot, trigger, found_match=None):
+    bot.say("""                 ,. """)
+    bot.say("""                (\(\) """)
+    bot.say(""",_              ;  o > """)
+    bot.say(""" {`-.          /  (_) """)
+    bot.say(""" `={\`-._____/`   | """)
+    bot.say("""  `-{ /    -=`\   | """)
+    bot.say("""   `={  -= = _/   / """)
+    bot.say("""      `\  .-'   /` """)
+    bot.say("""       {`-,__.'===,_ """)
+    bot.say("""       //`        `\\\ """)
+    bot.say("""      // """)
+    bot.say("""      `\= """)
+
+
+@module.rule('Консолька, акшутеп!')
+def retsoor(bot, trigger, found_match=None):
+    bot.say("""   ., """)
+    bot.say(""" (\)\) """)
+    bot.say("""< o  ;              _, """)
+    bot.say(""" (_)  \          .-`} """)
+    bot.say("""   |   `\_____.-`\}=` """)
+    bot.say("""   |   /`=-    / }-` """)
+    bot.say("""   \   \_ = =-  }=` """)
+    bot.say("""    `\   '-.  /` """)
+    bot.say("""  _,==='.__,-`} """)
+    bot.say("""//`        `\\\ """)
+    bot.say("""             \\\ """)
+    bot.say("""            =/` """)
+
+'''
+@commands('лгбт')
+def lgbt(bot, trigger, found_match=None):
+    match = found_match or trigger
+    req = match.group(2)
+    if req is None:
+        sys.exit()
+    if req.count('pigzilla') != 0:
+        bot.reply('заебал.')
+        sys.exit()
+    lgbt_colors_bg = [5, 4, 8, 3, 2, 6]
+    lgbt_colors_fg = [0, 0, 1, 0, 0, 0]
+    answer = ''
+    for c in req:
+        answer = answer + bold(color(' ' + c + ' ',
+                                     lgbt_colors_fg[0],
+                                     lgbt_colors_bg[0]))
+        lgbt_colors_bg.append(lgbt_colors_bg.pop(0))
+        lgbt_colors_fg.append(lgbt_colors_fg.pop(0))
+    bot.say(answer)
+
+
+@commands('gt')
+def greentext(bot, trigger, found_match=None):
+    MAX_GTSTRINGS = 5
+    from datetime import date
+    match = found_match or trigger
+    req = match.group(2)
+    if req is None:
+        bot.say(color('> хочет гринтекстнуть', colors.GREEN))
+        bot.say(color('> не пишет текст', colors.GREEN))
+        sys.exit()
+    if re.match('.*pigzilla.*', req):
+        bot.reply('заебал.')
+        sys.exit()
+    if req.count('>') == 0:
+        req = '>' + req
+    if req.count('>') > MAX_GTSTRINGS:
+        bot.say(color('> ' + str(date.today().year), colors.GREEN))
+        bot.say(color('> строк гринтекста больше, чем ' +
+                      str(MAX_GTSTRINGS), colors.GREEN))
+        sys.exit()
+    gtexts = req.split('>')
+    gtexts.pop(0)
+    for gtext in gtexts:
+        bot.say(color('>' + gtext, colors.GREEN))
+
+'''
+@commands('gty')
+def greentext_year(bot, trigger, found_match=None):
+    MAX_GTSTRINGS = 5
+    from datetime import date
+    match = found_match or trigger
+    req = match.group(2)
+    if req is None:
+        req = '>' + str(date.today().year)
+    if re.match('.*pigzilla.*', req):
+        bot.reply('заебал.')
+        sys.exit()
+    if req.count('>') == 0:
+        req = '>' + req
+    if req.count('>') > MAX_GTSTRINGS:
+        bot.say(color('> ' + str(date.today().year), colors.GREEN))
+        bot.say(color('> строк гринтекста больше, чем ' +
+                      str(MAX_GTSTRINGS), colors.GREEN))
+        sys.exit()
+    if not re.match('^>2016$', req):
+        req = '>' + str(date.today().year) + req
+    gtexts = req.split('>')
+    gtexts.pop(0)
+    for gtext in gtexts:
+        bot.say(color('>' + gtext, colors.GREEN))
+
